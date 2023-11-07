@@ -29,19 +29,3 @@ export const validatePassword = (password) => {
 
   return true;
 };
-
-export const validateUsername = (username) => {
-  if (!username) {
-    throw Error("Invalid username");
-  }
-
-  if (!validator.isAlpha(username)) {
-    throw Error("Username should contain only alphabetic characters");
-  }
-
-  if (username.length < 3) {
-    throw Error("Username must be at least 3 characters");
-  }
-
-  return true;
-};

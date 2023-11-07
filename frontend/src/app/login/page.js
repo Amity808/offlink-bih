@@ -8,7 +8,7 @@ import { Input } from '../ui/input'
 import CustomPasswordInput from '../ui/CustomPasswordInput'
 import useLogin from '../helpers/useLogin'
 import useValidation from '../hooks/useValidator'
-import { validateEmail, validatePassword, validateUsername } from '../helpers/validators'
+import { validateEmail, validatePassword } from '../helpers/validators'
 
 const Login = () => {
   const [email, setEmail] = useState("")
