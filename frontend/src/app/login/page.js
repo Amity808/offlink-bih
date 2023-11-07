@@ -47,10 +47,15 @@ const Login = () => {
         <div className='main2 mt-6 lg:w-[25%] md:w-[32%] w-[80%] md:mt-0 ml-auto mr-auto md:ml-0 md:mr-0  flex  flex-col justify-between'>
 
           <form className='w-full  space-y-4'>
-            <Input type="text" placeHolder="Username" className="w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md" error={errorEmail} />
+            <Input type="text" placeHolder="Username" className="w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md" value={email} error={errorEmail} onChange={(e) => {
+              setEmail(e.target.value)
+            }} />
             {/* <input type="email" name='email' placeholder='Enter Email' className='w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md' /> */}
             {/* <input type='password' name='' className=' w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md' placeholder='******'></input> */}
-            <CustomPasswordInput className="w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md" value={password} error={passwordError} id="password"/>
+            <CustomPasswordInput 
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }} className="w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md" value={password} error={passwordError} id="password"/>
             <button className='w-full h-[3rem] flex items-center justify-center bg-[#4461F2] font-bold rounded-md text-white '>Sign up</button>
           </form>
 

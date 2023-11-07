@@ -19,14 +19,14 @@ const CustomPasswordInput = ({
     }, [visible]);
   
     return (
-      <div className="form-group mb-8 w-[80%]">
+      <div className="">
         <div className="relative">
           <input
             id={id}
             name={name}
             {...props}
             type={visible ? "text" : "password"}
-            className={` ${className}`}
+            className={className}
           />
           <div className="absolute cursor-pointer top-0 right-4 flex items-center pl-3 h-full">
             <div onClick={toggleVisibility}>
@@ -38,7 +38,7 @@ const CustomPasswordInput = ({
             </div>
           </div>
         </div>
-        {error && value && <div className="text-red-900 text-sm">{error}</div>}
+        {error && value && <div className="text-red-900 text-sm mt-1">{error}</div>}
       </div>
     );
   };
