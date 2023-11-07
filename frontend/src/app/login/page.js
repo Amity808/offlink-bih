@@ -9,10 +9,13 @@ import CustomPasswordInput from '../ui/CustomPasswordInput'
 import useLogin from '../helpers/useLogin'
 import useValidation from '../hooks/useValidator'
 import { validateEmail, validatePassword } from '../helpers/validators'
+import LoadingIcon from '../component/icons/LoadingIcon'
+import Button from '../ui/button'
 
 const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [error, setError] = useState("")
 
   const errorEmail = useValidation(() => {
       validateEmail(email)
@@ -26,6 +29,12 @@ const Login = () => {
   })
 
   console.log(passwordError)
+
+  const { isLoading, submitForm: register} = useLogin({
+    email,
+    password,
+    setError
+  })
 
   return (
     < >
@@ -46,7 +55,11 @@ const Login = () => {
 
         <div className='main2 mt-6 lg:w-[25%] md:w-[32%] w-[80%] md:mt-0 ml-auto mr-auto md:ml-0 md:mr-0  flex  flex-col justify-between'>
 
-          <form className='w-full  space-y-4'>
+          <form className='w-full  space-y-4' onSubmit={(e) => {
+            e.preventDefault();
+            register();
+          }}>
+            {error && <p className='my-4 text-red-900'>{error}</p>}
             <Input type="text" placeHolder="Username" className="w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md" value={email} error={errorEmail} onChange={(e) => {
               setEmail(e.target.value)
             }} />
@@ -56,7 +69,10 @@ const Login = () => {
             onChange={(e) => {
               setPassword(e.target.value);
             }} className="w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md" value={password} error={passwordError} id="password"/>
-            <button className='w-full h-[3rem] flex items-center justify-center bg-[#4461F2] font-bold rounded-md text-white '>Sign up</button>
+            <div>
+              {isLoading && <LoadingIcon />}
+              <button className='w-full h-[3rem] flex items-center justify-center bg-[#4461F2] font-bold rounded-md text-white '>Sign up</button>
+            </div>
           </form>
 
           <div className="dash  w-full flex  items-center justify-between">
