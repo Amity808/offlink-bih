@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
-import Loader from "@/app/ui/Loader";
-import useAuthenticated from "@/app/hooks/useAuthenticated";
+// import Loader from "@/app/ui/Loader";
+import Loader from "../../ui/Loader"
+import useAuthenticated from "../../hooks/useAuthenticated";
 
 const AuthMiddlware = ({ children }) => {
     const router = useRouter();

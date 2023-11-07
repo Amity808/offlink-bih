@@ -1,7 +1,8 @@
 import validator from "validator";
 import useLoading from "../../hooks/usLoading";
 import { useRouter } from "next/navigation";
-
+import api from "../../http/axiosFetch"
+import { toast } from "react-toastify";
 const useRegister = ({ email, password, setError}) => {
   const router = useRouter()
   const { isLoading, startLoading, stopLoading} = useLoading()
@@ -10,7 +11,7 @@ const useRegister = ({ email, password, setError}) => {
     startLoading();
     setError("");
 
-    const data = { email: email, password: password };
+    const data = {email, password };
 
     try {
         useValidation(() => {
@@ -32,16 +33,27 @@ const useRegister = ({ email, password, setError}) => {
     }
 
     try {
-        const response = await fetch("http://16.16.185.83:80/auth/login",{
+        const response = await fetch("http://16.16.185.83:80/auth/register",{
             method: "POST",
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
-        const body = await response
+        const body = await response.json()
         console.log(body)
+        if(body?.message) {
+            toast.success(body?.message)
+            stopLoading()
+            router.push("/login")
+        } else{
+            setError(body?.error?.message)
+        }
+        stopLoading()
+        // router.push("/login")
         return true
     } catch (err) {
         stopLoading()
-        console.log(err)
         setError("Unexpected")
         return false
     }

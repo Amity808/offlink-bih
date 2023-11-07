@@ -3,7 +3,8 @@ import useLoading from "../hooks/usLoading";
 import { useRouter } from "next/navigation";
 import isEmail from "validator/lib/isEmail";
 import validator from "validator";
-
+import api from "../http/axiosFetch"
+import { toast } from "react-toastify";
 
 const useLogin = ({ email, password, setError }) => {
   const router = useRouter();
@@ -35,17 +36,19 @@ const useLogin = ({ email, password, setError }) => {
     }
 
     try {
-        const response = await fetch("http://16.16.185.83:80/auth/login",{
-            method: "POST",
-            body: JSON.stringify(data)
-        })
-        const body = await response()
+        const response = await api.post("/auth/login", data)
+        const body = await response
+        if(body.status)
         console.log(body)
+        localStorage.setItem("bih", body?.data?.accessToken);
+        toast.success("Login Successful")
+        stopLoading();
         router.push("/")
-        return true
+        return false
     } catch (err) {
         stopLoading()
-        setError("Unexpected")
+        setError(`${err?.response?.data?.error?.status == 401 ? "You have not verified your email address" : "Unexpected Error"}`)
+        console.log(err?.response?.data?.error?.message)
         return false
     }
 

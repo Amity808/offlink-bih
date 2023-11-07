@@ -1,18 +1,22 @@
-import getprofileWithToken from "@/app/helpers/getprofileWithToken";
+// import getprofileWithToken from "@/app/helpers/getprofileWithToken";
 
 const isAuthenticated = async () => {
+    let token
     if(typeof window !== "undefined") {
-        const token = localStorage.getItem("token")
+        token = localStorage.getItem("bih")
         
         if(!token) {
             return false;
+        } else {
+            return true
         }
-        
-        // const userProfile = await getprofileWithToken(token)
 
-        // return userProfile ? true : false;
+        
+        
     }
+    console.log(token)
     return false
+    
 }
 
 export default isAuthenticated;

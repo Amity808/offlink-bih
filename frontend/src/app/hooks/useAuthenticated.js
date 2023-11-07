@@ -5,7 +5,7 @@ import isAuthenticated from '../middlewares/auth/helper/isAuthenticated'
 
 const useAuthenticated = () => {
     const [authenticated, setAuthenticated] = useState(false)
-    const { isLoading, startLoading, stopLoading} = useLoading()
+    const { isLoading, startLoading, stopLoading} = useLoading(true)
     
 
     useEffect(() => {

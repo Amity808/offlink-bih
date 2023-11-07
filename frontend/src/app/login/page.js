@@ -10,7 +10,7 @@ import useLogin from '../helpers/useLogin'
 import useValidation from '../hooks/useValidator'
 import { validateEmail, validatePassword } from '../helpers/validators'
 import LoadingIcon from '../component/icons/LoadingIcon'
-import Button from '../ui/button'
+
 
 const Login = () => {
   const [email, setEmail] = useState("")
@@ -70,8 +70,11 @@ const Login = () => {
               setPassword(e.target.value);
             }} className="w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md" value={password} error={passwordError} id="password"/>
             <div>
+              
+              {/* <button className='w-full h-[3rem] flex items-center justify-center bg-[#4461F2] font-bold rounded-md text-white '>Sign up</button> */}
+              <Button className="w-full h-[3rem] flex items-center justify-center bg-[#4461F2] font-bold rounded-md text-white " disabled={isLoading}>
               {isLoading && <LoadingIcon />}
-              <button className='w-full h-[3rem] flex items-center justify-center bg-[#4461F2] font-bold rounded-md text-white '>Sign up</button>
+                Sign up</Button>
             </div>
           </form>
 
