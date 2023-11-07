@@ -9,9 +9,10 @@ const CustomPasswordInput = ({
     name,
     error,
     value,
+    className,
     ...props
   }) => {
-    const [visible, setVisible] = useState<boolean>(false);
+    const [visible, setVisible] = useState(false);
   
     const toggleVisibility = useCallback(() => {
       setVisible((state) => !state);
@@ -25,7 +26,7 @@ const CustomPasswordInput = ({
             name={name}
             {...props}
             type={visible ? "text" : "password"}
-            className="w-full py-4 border-b border-gray-200 font-normal"
+            className={` ${className}`}
           />
           <div className="absolute cursor-pointer top-0 right-4 flex items-center pl-3 h-full">
             <div onClick={toggleVisibility}>

@@ -1,10 +1,32 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import Navbar from '../component/Navbar'
 import fall from '../../../public/fall.png'
 import Image from 'next/image'
-
+import Button from '../ui/button'
+import { Input } from '../ui/input'
+import CustomPasswordInput from '../ui/CustomPasswordInput'
+import useLogin from '../helpers/useLogin'
+import useValidation from '../hooks/useValidator'
+import { validateEmail, validatePassword, validateUsername } from '../helpers/validators'
 
 const Login = () => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const errorEmail = useValidation(() => {
+      validateEmail(email)
+    }
+  );
+
+  console.log(errorEmail)
+
+  const passwordError = useValidation(() => {
+    validatePassword(password)
+  })
+
+  console.log(passwordError)
+
   return (
     < >
       <div className="bg-[#0B0B0BF2] h-[100vh]">
@@ -25,9 +47,10 @@ const Login = () => {
         <div className='main2 mt-6 lg:w-[25%] md:w-[32%] w-[80%] md:mt-0 ml-auto mr-auto md:ml-0 md:mr-0  flex  flex-col justify-between'>
 
           <form className='w-full  space-y-4'>
-            <input type="email" name='email' placeholder='Enter Email' className='w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md' />
-            <input type='password' name='' className=' w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md' placeholder='******'></input>
-
+            <Input type="text" placeHolder="Username" className="w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md" error={errorEmail} />
+            {/* <input type="email" name='email' placeholder='Enter Email' className='w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md' /> */}
+            {/* <input type='password' name='' className=' w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md' placeholder='******'></input> */}
+            <CustomPasswordInput className="w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md" value={password} error={passwordError} id="password"/>
             <button className='w-full h-[3rem] flex items-center justify-center bg-[#4461F2] font-bold rounded-md text-white '>Sign up</button>
           </form>
 

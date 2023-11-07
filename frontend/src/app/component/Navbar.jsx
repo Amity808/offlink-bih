@@ -20,7 +20,7 @@ const Navbar = () => {
                     <ul className="flex space-x-10 text-white">
                         <li>Home</li>
                         <li><Link href='/login'>Login</Link></li>
-                        <li>Sign-up</li>
+                        <li><Link href="/signup">Sign-up</Link></li>
                     </ul>
                     
         </div>

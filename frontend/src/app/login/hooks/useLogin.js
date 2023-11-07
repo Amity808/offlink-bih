@@ -2,8 +2,8 @@ import { useCallback, useState, useMemo } from "react";
 import api from "../../../http/axiosfetch";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import useLoading from "./usLoading";
-import useEmailValdiation from "./useValidator";
+import useLoading from "../../hooks/usLoading";
+import useEmailValdiation from "../../hooks/useValidator";
 
 const useLogin = () => {
   const router = useRouter();

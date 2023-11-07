@@ -1,5 +1,5 @@
 import validator from "validator";
-import useLoading from "./usLoading";
+import useLoading from "../../hooks/usLoading";
 import { useRouter } from "next/navigation";
 
 const useRegister = ({ email, password, setError}) => {

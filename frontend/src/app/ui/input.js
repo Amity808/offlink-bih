@@ -1,5 +1,5 @@
-import { VariantProps, cva } from 'class-variance-authority';
-import React, { DetailedHTMLProps, InputHTMLAttributes, SelectHTMLAttributes } from 'react';
+import {  cva } from 'class-variance-authority';
+import React from 'react';
 import { twMerge } from 'tailwind-merge';
 
 const inputVariants = cva(
@@ -27,6 +27,7 @@ const inputVariants = cva(
 export function Input({
   className,
   leftIcon,
+  value,
   rightIcon,
   type,
   isLoading,
@@ -40,24 +41,14 @@ export function Input({
   inputSize,
   ...props
 }) {
-  const classNames = twMerge(
-    inputVariants({ intent, inputSize }),
-    className,
-    disabled || isLoading
-      ? 'bg-brand-disabled opacity-[.8] border-[1px] border-brand-disabled2 cursor-not-allowed'
-      : '',
-  );
+
   return (
-    <div className={classNames}>
+    <div>
       {leftIcon && leftIcon}
       <input
         onChange={onChange}
         type={type}
-        className={twMerge(
-          'w-full outline-none hide-caret',
-          disabled ?? isLoading ? 'cursor-not-allowed' : '',
-          leftIcon && 'pl-1',
-        )}
+        className={className}
         placeholder={placeHolder ?? 'Placeholder'}
         disabled={isLoading ?? disabled}
         {...props}
