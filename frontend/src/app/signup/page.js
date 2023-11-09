@@ -42,10 +42,10 @@ const Signup = () => {
     <div className=''>
       <Navbar/>
       </div>
-      <div className="main  flex justify-between md:flex-row flex-col lg:w-[80%] md:w-[95%] w-full h-[20rem] ml-auto mr-auto mt-10">
-        <div className='main1 flex md:w-[65%] w-[95%] ml-auto mr-auto md:ml-0 md:mr-0  md:flex-row flex-col-reverse rounded-lg bg-[#343435]'>
+      <div className="main  flex justify-between md:flex-row flex-col lg:w-[80%] md:w-[95%] w-full h-[20rem] ml-auto mr-auto sm:mt-[3rem] md:mt-[20rem] mt-[5rem]">
+        <div className='main1 flex md:w-[65%] w-[95%] ml-auto mr-auto md:ml-0 md:mr-0  md:flex-row flex-col-reverse rounded-lg text-white'>
           <div className='sec1 md:w-[50%] w-[80%] ml-auto mr-auto '>
-            <p className='text-3xl font-semibold'>Sign In to <br /> Recharge Direct</p>
+            <p className='text-3xl font-semibold'>Sign Up to <br /> Offlink</p>
             <p className='pt-8 '>if you don’t an account<br/> you can <b className='text-blue-500'>Register here!</b></p>
           </div>
           <div className='sec2 md:w-[50%] w-[80%] ml-auto mr-auto md:h-[20rem] h-[12rem]'>
@@ -63,14 +63,11 @@ const Signup = () => {
             <Input type="text" placeHolder="Username" className="w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md" value={email} error={errorEmail} onChange={(e) => {
               setEmail(e.target.value)
             }} />
-            {/* <input type="email" name='email' placeholder='Enter Email' className='w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md' /> */}
-            {/* <input type='password' name='' className=' w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md' placeholder='******'></input> */}
             <CustomPasswordInput 
             onChange={(e) => {
               setPassword(e.target.value);
             }} className="w-full pl-4 h-[3rem] bg-[#EAF0F7] rounded-md" value={password} error={passwordError} id="password"/>
             <div>
-              {/* <button className='w-full h-[3rem] flex items-center justify-center bg-[#4461F2] font-bold rounded-md text-white '>Sign up</button> */}
               <Button className="w-full h-[3rem] flex items-center justify-center bg-[#4461F2] font-bold rounded-md text-white " disabled={isLoading}>
               {isLoading && <LoadingIcon />}
                 Sign up</Button>
