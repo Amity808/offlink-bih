@@ -49,7 +49,7 @@ const Order = () => {
         setError("Failed to place order enpoint");
       }
 
-      const order = await newOrder();
+      await newOrder();
 
       // if(!signTx) throw "Failed to signTx"
 
