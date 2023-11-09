@@ -58,9 +58,9 @@ const useAuthenticated = () => {
       }
       stopLoading();
     };
-    connectorWs()
     connect();
     authenticat();
+    connectorWs()
   }, []);
   return { isLoading, authenticated };
 };

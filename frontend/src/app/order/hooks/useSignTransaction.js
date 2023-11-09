@@ -109,8 +109,8 @@ const useSignTransaction = ({
       return true;
     } catch (error) {
       stopLoading();
-      console.log(err?.message);
-      toast.error(err?.message);
+      console.log(error?.message);
+      toast.error(error?.message);
       setError("unexpected Error");
       return false;
     }
