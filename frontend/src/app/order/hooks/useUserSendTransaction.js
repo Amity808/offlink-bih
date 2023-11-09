@@ -3,12 +3,11 @@ import { useDebounce } from "use-debounce";
 import { useState } from "react";
 import useNaira from "../../hooks/useNaira";
 import { useContractCall } from "../../hooks/contractHook/useContractRead";
-import { useContractSendWrite } from "../../hooks/contractHook/useContractWrite";
+import { useContractSendWrite } from "../../hooks/contractHook/contractWrite";
 import useLoading from "../../hooks/usLoading";
 
 const useUserSendTransaction = ({ fiat_currency, token_amount, setError }) => {
   const [blockData, setBlockData] = useState();
-  const [resultState, setResultState] = useState(false)
   const { isLoading, startLoading, stopLoading } = useLoading();
   let token;
   if (typeof window !== "undefined") {
@@ -60,8 +59,6 @@ const useUserSendTransaction = ({ fiat_currency, token_amount, setError }) => {
       setError("Unexpected Error");
       return false;
     }
-
-    
   };
 
   return { isLoading, placeOrder, blockData };

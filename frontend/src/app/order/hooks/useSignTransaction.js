@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useAccount } from "wagmi";
 import { useConnectModal } from "@rainbow-me/rainbowkit";
 import { contractSendWrite } from "../../hooks/contractHook/useContractWrite";
-import { prepareWriteContract, writeContract } from "@wagmi/core"
+import { useContractSendWrite } from "../../hooks/contractHook/useContractWrite";
 import offlick from "../../contract/offlink.json"
 
 const useSignTransaction = ({
@@ -39,21 +39,31 @@ const useSignTransaction = ({
 
   const convertValue = parseEther(deBounceTokenAmount?.toString() || "1");
 
-  const placeOrder = async() => {
-    const newOrder = await contractSendWrite(
-    "placeSellOrder",
-    [
-      deBounceNonce,
-      token_amount.toString(),
-      deBounceCurrencyAmount,
-      deBounceCurrenyByte,
-      deBounceCurrencyTokenAdd,
-      deBounceSignature,
-    ]
-  );
+  const { writeAsync: placeOrder, isLoading: placeOrderLoading } = useContractSendWrite("placeSellOrder",
+  [
+    deBounceNonce,
+    token_amount.toString(),
+    deBounceCurrencyAmount,
+    deBounceCurrenyByte,
+    deBounceCurrencyTokenAdd,
+    deBounceSignature,
+  ])
 
-  return newOrder
-  }
+  // const placeOrder = async() => {
+  //   const newOrder = await contractSendWrite(
+  //   "placeSellOrder",
+  //   [
+  //     deBounceNonce,
+  //     token_amount.toString(),
+  //     deBounceCurrencyAmount,
+  //     deBounceCurrenyByte,
+  //     deBounceCurrencyTokenAdd,
+  //     deBounceSignature,
+  //   ]
+  // );
+
+  // return newOrder
+  // }
 
   
 
@@ -66,7 +76,8 @@ const useSignTransaction = ({
 
     // return;
 
-    await useApprove();
+    const approve = await useApprove();
+    await approve
 
     if (!placeOrder) {
       setError("Failed To Sign Transaction");
@@ -104,7 +115,7 @@ const useSignTransaction = ({
       return false;
     }
   };
-  return { isLoading, signUserTransaction, handleSignTransaction, loadingApprove };
+  return { isLoading, placeOrderLoading,  signUserTransaction, handleSignTransaction, loadingApprove };
 };
 
 export default useSignTransaction;
