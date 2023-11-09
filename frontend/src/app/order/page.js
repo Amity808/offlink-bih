@@ -53,11 +53,11 @@ const Order = () => {
 
       // if(!signTx) throw "Failed to signTx"
 
-      if (order) {
+      // if (order) {
         if (!tx) throw "Failed ";
         await tx();
-        return true;
-      }
+        // return true;
+      // }
     } catch (error) {
       console.log(error);
     }
